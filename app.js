@@ -38,3 +38,22 @@ document.querySelectorAll('.cute-button').forEach(btn => {
         btn.style.transform = 'none';
     });
 });
+document.getElementById('content').addEventListener('input', (e) => {
+    if (e.target.value.length % 5 === 0) {
+        const emoji = ['(*^▽^*)', '(✧ω✧)', 'ヽ(✿ﾟ▽ﾟ)ノ', '～(￣▽￣～)~'][Math.floor(Math.random()*4)];
+        showFloatingEmoji(emoji);
+    }
+});
+
+function showFloatingEmoji(emoji) {
+    const floatEmoji = document.createElement('div');
+    floatEmoji.textContent = emoji;
+    floatEmoji.style.cssText = `
+        position: absolute;
+        font-size: 24px;
+        animation: floatUp 1s ease-out;
+        pointer-events: none;
+    `;
+    document.body.appendChild(floatEmoji);
+    setTimeout(() => floatEmoji.remove(), 1000);
+}
