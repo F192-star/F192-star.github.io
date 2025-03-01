@@ -2,27 +2,34 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>萌萌留言板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 萌趣留言板 🌸</title>
     <link rel="stylesheet" href="style.css">
-    <!-- 引入 Font Awesome 图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- 提交成功提示 -->
+    <div id="toast" class="toast-hidden">
+        <i class="fas fa-heartbeat"></i>
+        <span>发射可爱成功！(๑>ᴗ<๑)</span>
+    </div>
+
     <div class="container">
-        <h1 class="title"><i class="fas fa-heart"></i> 可爱留言板 <i class="fas fa-heart"></i></h1>
+        <h1 class="title"><i class="fas fa-cloud"></i> 喵喵留言板 <i class="fas fa-cloud"></i></h1>
         
         <!-- 留言表单 -->
         <form id="commentForm" class="cute-form">
             <div class="input-group">
-                <i class="fas fa-user icon"></i>
-                <input type="text" id="username" placeholder="你的昵称～" maxlength="20">
+                <i class="fas fa-user-secret icon"></i>
+                <input type="text" id="username" placeholder="怎么称呼你呀～" maxlength="20">
             </div>
             <div class="input-group">
                 <i class="fas fa-comment-dots icon"></i>
-                <textarea id="content" placeholder="说点可爱的话吧～ (≧ω≦)" required></textarea>
+                <textarea id="content" placeholder="今天有什么小美好呢？(✪ω✪)" required></textarea>
             </div>
             <button type="submit" class="cute-button">
-                <i class="fas fa-paw"></i> 发送可爱攻击！
+                <i class="fas fa-magic"></i> 咻～发送！
             </button>
         </form>
 
@@ -30,6 +37,9 @@
         <div id="comments" class="comments-container"></div>
     </div>
 
+    <!-- Firebase 配置 -->
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
