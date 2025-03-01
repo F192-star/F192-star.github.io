@@ -1,102 +1,210 @@
-/* 粉嫩渐变背景 + 浮动云朵 */
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', '萌软糖果', cursive;
+}
+
 body {
-    background: linear-gradient(45deg, #fff0f5 0%, #ffe6ff 100%);
+    background: linear-gradient(45deg, #ffe6f0 0%, #fff9e6 100%);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
 }
 
-/* 动态浮动云朵 */
-body::before {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 80px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 40px;
-    animation: floatCloud 20s infinite linear;
-    top: 20%;
-    left: -15%;
-}
-
+/* 浮动云朵 */
 @keyframes floatCloud {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(120vw); }
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(120vw); opacity: 0; }
 }
 
-/* 彩虹标题 */
-.title {
-    background: linear-gradient(90deg, #ff85a2, #ffb366, #ffd700, #7bd96f, #6fd9d9, #85a2ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent !important;
-    font-family: 'Comic Sans MS', cursive;
-    font-size: 3em !important;
-    text-shadow: 2px 2px 0 #fff;
-}
-
-/* 毛茸茸输入框 */
-input, textarea {
-    background: #fff !important;
-    border: 3px solid #ffb3c6 !important;
-    border-radius: 25px !important;
-    padding-left: 50px !important;
-    font-size: 18px !important;
-}
-
-/* 输入框里的小爪印图标 */
-.input-group::after {
-    content: '';
+body::after {
+    content: '☁️';
     position: absolute;
-    width: 30px;
-    height: 30px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff85a2" d="M30 60q-10-5-15-15t-5-20q0-15 15-25 15 10 15 25 0 15-5 20t-10 15z"/></svg>');
-    left: 10px;
+    font-size: 50px;
+    top: 15%;
+    left: -10%;
+    animation: floatCloud 15s infinite linear;
+    opacity: 0.3;
+}
+
+/* 标题样式 */
+.title {
+    text-align: center;
+    color: #ff77a9;
+    font-size: 2.8em;
+    margin: 30px 0;
+    text-shadow: 3px 3px 0 #fff;
+}
+
+/* 萌系表单 */
+.cute-form {
+    background: rgba(255,255,255,0.9);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(255,119,169,0.1);
+    margin-bottom: 40px;
+    backdrop-filter: blur(5px);
+}
+
+.input-group {
+    position: relative;
+    margin: 20px 0;
+}
+
+.icon {
+    position: absolute;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
+    color: #ff77a9;
+    font-size: 1.3em;
+    z-index: 2;
 }
 
-/* 按钮点击特效 */
+input, textarea {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 3px solid #ffb3d9;
+    border-radius: 20px;
+    font-size: 16px;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ff77a9;
+    box-shadow: 0 0 15px rgba(255,119,169,0.2);
+}
+
+/* 魔法按钮 */
 .cute-button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(45deg, #ff77a9, #ff9f4d);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
     position: relative;
     overflow: hidden;
 }
 
-.cute-button:active::after {
+.cute-button:hover {
+    transform: scale(1.02) rotate(2deg);
+    box-shadow: 0 5px 15px rgba(255,119,169,0.4);
+}
+
+.cute-button:active {
+    transform: scale(0.98);
+}
+
+.cute-button::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 50%;
-    animation: sparkle 0.4s linear;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    top: 0;
+    left: -100%;
+    transition: 0.3s;
 }
 
-@keyframes sparkle {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(3); opacity: 0; }
+.cute-button:hover::after {
+    left: 100%;
 }
 
-/* 留言卡片加入猫耳 */
+/* 留言卡片 */
+.comments-container {
+    display: grid;
+    gap: 20px;
+}
+
 .comment {
+    background: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(255,119,169,0.1);
     position: relative;
-    background: #fff;
-    border-radius: 20px;
-    margin: 20px 0;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 .comment::before {
-    content: '';
+    content: "✨";
     position: absolute;
-    top: -20px;
-    left: 30px;
-    width: 40px;
-    height: 40px;
-    background: #fff;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    left: -15px;
+    top: -15px;
+    font-size: 24px;
+    animation: twinkle 1.5s infinite;
 }
 
-/* 光标变成小星星 */
-body {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="%23ff85a2" d="M12 0l3.09 6.26L22 7.27l-5 4.87 1.18 6.88L12 16l-6.18 3.02L7 12.14 2 7.27l6.91-1.01L12 0z"/></svg>'), auto;
+.comment h3 {
+    color: #ff6699;
+    margin-bottom: 10px;
+}
+
+.comment p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.comment .meta {
+    color: #ff99bb;
+    font-size: 0.9em;
+}
+
+/* 成功提示 */
+#toast {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff77a9;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(255,119,169,0.3);
+    opacity: 0;
+    z-index: 999;
+    animation: toastPop 2s;
+}
+
+.toast-hidden {
+    display: none;
+}
+
+@keyframes toastPop {
+    0%, 100% { 
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    20%, 80% { 
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* 飘落爱心 */
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
 }
