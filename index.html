@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>社区留言板</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- 引入 Firebase 和 reCAPTCHA -->
-  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8">
+    <title>萌萌留言板</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <!-- 留言表单 -->
-    <form id="commentForm">
-      <input type="text" id="username" placeholder="昵称（可选）" maxlength="20">
-      <textarea id="content" placeholder="写下你的留言..." required></textarea>
-      <div class="captcha-box">
-        <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-      </div>
-      <button type="submit">提交留言</button>
-    </form>
+    <div class="container">
+        <h1 class="title"><i class="fas fa-heart"></i> 可爱留言板 <i class="fas fa-heart"></i></h1>
+        
+        <!-- 留言表单 -->
+        <form id="commentForm" class="cute-form">
+            <div class="input-group">
+                <i class="fas fa-user icon"></i>
+                <input type="text" id="username" placeholder="你的昵称～" maxlength="20">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-comment-dots icon"></i>
+                <textarea id="content" placeholder="说点可爱的话吧～ (≧ω≦)" required></textarea>
+            </div>
+            <button type="submit" class="cute-button">
+                <i class="fas fa-paw"></i> 发送可爱攻击！
+            </button>
+        </form>
 
-    <!-- 留言列表 -->
-    <div id="comments"></div>
-  </div>
+        <!-- 留言列表 -->
+        <div id="comments" class="comments-container"></div>
+    </div>
 
-  <script src="firebase-config.js"></script>
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
