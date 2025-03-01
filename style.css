@@ -1,144 +1,102 @@
-/* 重置默认样式 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', 'Mamelon', sans-serif; /* 推荐安装可爱字体如 Mamelon */
-}
-
+/* 粉嫩渐变背景 + 浮动云朵 */
 body {
-    background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+    background: linear-gradient(45deg, #fff0f5 0%, #ffe6ff 100%);
     min-height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.title {
-    text-align: center;
-    color: #ff85a2;
-    font-size: 2.5em;
-    margin: 30px 0;
-    text-shadow: 2px 2px 0px #fff;
-}
-
-/* 萌萌表单 */
-.cute-form {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(255, 133, 162, 0.1);
-    margin-bottom: 40px;
-}
-
-.input-group {
     position: relative;
-    margin: 15px 0;
+    overflow-x: hidden;
 }
 
-.icon {
+/* 动态浮动云朵 */
+body::before {
+    content: '';
     position: absolute;
-    left: 15px;
+    width: 200px;
+    height: 80px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 40px;
+    animation: floatCloud 20s infinite linear;
+    top: 20%;
+    left: -15%;
+}
+
+@keyframes floatCloud {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(120vw); }
+}
+
+/* 彩虹标题 */
+.title {
+    background: linear-gradient(90deg, #ff85a2, #ffb366, #ffd700, #7bd96f, #6fd9d9, #85a2ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 3em !important;
+    text-shadow: 2px 2px 0 #fff;
+}
+
+/* 毛茸茸输入框 */
+input, textarea {
+    background: #fff !important;
+    border: 3px solid #ffb3c6 !important;
+    border-radius: 25px !important;
+    padding-left: 50px !important;
+    font-size: 18px !important;
+}
+
+/* 输入框里的小爪印图标 */
+.input-group::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff85a2" d="M30 60q-10-5-15-15t-5-20q0-15 15-25 15 10 15 25 0 15-5 20t-10 15z"/></svg>');
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ff85a2;
-    font-size: 1.2em;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 12px 12px 12px 40px;
-    border: 2px solid #ffe0e9;
-    border-radius: 15px;
-    font-size: 16px;
-    transition: all 0.3s;
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: #ff85a2;
-    box-shadow: 0 0 8px rgba(255, 133, 162, 0.3);
-}
-
-/* 可爱按钮 */
+/* 按钮点击特效 */
 .cute-button {
-    width: 100%;
-    padding: 15px;
-    background: #ff85a2;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.cute-button:hover {
-    background: #ff6b8b;
-    transform: scale(0.98) rotate(-2deg);
-}
-
-.cute-button:active {
-    transform: scale(0.95);
-}
-
-/* 留言卡片 */
-.comments-container {
-    display: grid;
-    gap: 15px;
-}
-
-.comment {
-    background: white;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 3px 10px rgba(255, 133, 162, 0.1);
     position: relative;
+    overflow: hidden;
+}
+
+.cute-button:active::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    animation: sparkle 0.4s linear;
+}
+
+@keyframes sparkle {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(3); opacity: 0; }
+}
+
+/* 留言卡片加入猫耳 */
+.comment {
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    margin: 20px 0;
 }
 
 .comment::before {
-    content: "";
+    content: '';
     position: absolute;
-    top: -10px;
-    left: 20px;
-    width: 30px;
-    height: 30px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff85a2" d="M50 0 Q 70 30, 50 60 Q 30 30, 50 0"/></svg>') no-repeat;
+    top: -20px;
+    left: 30px;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
-.comment h3 {
-    color: #ff6b8b;
-    margin-bottom: 10px;
-    font-size: 1.3em;
-}
-
-.comment p {
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 10px;
-}
-
-.comment .meta {
-    color: #ffa8c1;
-    font-size: 0.9em;
-}
-
-/* 小星星装饰 */
-.comment::after {
-    content: "★";
-    position: absolute;
-    color: #ffd700;
-    right: -10px;
-    top: -15px;
-    font-size: 1.5em;
-    animation: twinkle 1.5s infinite;
-}
-
-@keyframes twinkle {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+/* 光标变成小星星 */
+body {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="%23ff85a2" d="M12 0l3.09 6.26L22 7.27l-5 4.87 1.18 6.88L12 16l-6.18 3.02L7 12.14 2 7.27l6.91-1.01L12 0z"/></svg>'), auto;
 }
