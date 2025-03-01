@@ -1,36 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>F192 的留言厅</title>
+  <title>社区留言板</title>
   <link rel="stylesheet" href="style.css">
+  <!-- 引入 Firebase 和 reCAPTCHA -->
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-  <header>
-    <h1>阿妮哈塞iyou！</h1>
-    <p>F192的留言厅 · 网站完善中</p>
-  </header>
-
-  <main>
-    <section>
-      <h2>最新留言</h2>
-      <div class="message">
-        <p>没有早八 ps:w网站完善中</p>
-        <span>——来自 303</span>
+  <div class="container">
+    <!-- 留言表单 -->
+    <form id="commentForm">
+      <input type="text" id="username" placeholder="昵称（可选）" maxlength="20">
+      <textarea id="content" placeholder="写下你的留言..." required></textarea>
+      <div class="captcha-box">
+        <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
       </div>
-    </section>
-  </main>
+      <button type="submit">提交留言</button>
+    </form>
 
-  <footer>
-    <p>Powered by GitHub Pages</p>
-  </footer>
-<script src="https://utteranc.es/client.js"
-        repo="F192-star/F192-star.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-</script>
+    <!-- 留言列表 -->
+    <div id="comments"></div>
+  </div>
+
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
