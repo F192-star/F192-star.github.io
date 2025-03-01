@@ -1,0 +1,22 @@
+body {
+  font-family: "Microsoft Yahei", sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f5f5f5;
+}
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.message {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+footer {
+  text-align: center;
+  margin-top: 50px;
+  color: #666;
+}
