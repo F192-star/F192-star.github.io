@@ -3,43 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 萌趣留言板 🌸</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome 图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>绿意博客｜自然与科技的交融</title>
+    <style>
+        :root {
+            --primary-green: #2E7D32;  /* 主绿色 */
+            --secondary-green: #81C784; /* 辅助绿色 */
+            --accent-green: #C8E6C9;    /* 点缀绿色 */
+            --text-dark: #263238;       /* 深色文字 */
+            --text-light: #FFFFFF;      /* 浅色文字 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: var(--text-light);
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: var(--primary-green);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: var(--secondary-green);
+            color: var(--text-light);
+        }
+
+        /* 主要内容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* 文章卡片 */
+        .post-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--secondary-green);
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-date {
+            color: var(--secondary-green);
+            font-size: 0.9em;
+        }
+
+        /* 发布表单 */
+        .post-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .form-title {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--accent-green);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-green);
+        }
+
+        button {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--secondary-green);
+            transform: scale(1.05);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--primary-green);
+            color: var(--accent-green);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .post-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 提交成功提示 -->
-    <div id="toast" class="toast-hidden">
-        <i class="fas fa-heartbeat"></i>
-        <span>发射可爱成功！(๑>ᴗ<๑)</span>
-    </div>
+    <header>
+        <h1>🌿 绿意笔记</h1>
+        <p>记录技术与自然的和谐之美</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">文章</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">归档</a></li>
+        </ul>
+    </nav>
 
     <div class="container">
-        <h1 class="title"><i class="fas fa-cloud"></i> 喵喵留言板 <i class="fas fa-cloud"></i></h1>
-        
-        <!-- 留言表单 -->
-        <form id="commentForm" class="cute-form">
-            <div class="input-group">
-                <i class="fas fa-user-secret icon"></i>
-                <input type="text" id="username" placeholder="怎么称呼你呀～" maxlength="20">
-            </div>
-            <div class="input-group">
-                <i class="fas fa-comment-dots icon"></i>
-                <textarea id="content" placeholder="今天有什么小美好呢？(✪ω✪)" required></textarea>
-            </div>
-            <button type="submit" class="cute-button">
-                <i class="fas fa-magic"></i> 咻～发送！
-            </button>
-        </form>
+        <!-- 发布表单 -->
+        <section class="post-form">
+            <h2 class="form-title">新建文章</h2>
+            <form>
+                <input type="text" placeholder="文章标题" required>
+                <textarea rows="5" placeholder="文章内容..." required></textarea>
+                <div style="text-align: right;">
+                    <button type="submit">发布文章</button>
+                </div>
+            </form>
+        </section>
 
-        <!-- 留言列表 -->
-        <div id="comments" class="comments-container"></div>
+        <!-- 文章列表 -->
+        <article class="post-card">
+            <span class="post-date">2024年3月15日</span>
+            <h2>初探可持续Web开发</h2>
+            <p>在数字时代寻找环保的解决方案... 绿色主机、节能编码实践和生态友好的设计模式。</p>
+            <div style="margin-top: 1rem;">
+                <span style="background: var(--accent-green);" class="post-tag">技术</span>
+                <span style="background: var(--secondary-green);" class="post-tag">环保</span>
+            </div>
+        </article>
+
+        <article class="post-card">
+            <span class="post-date">2024年3月10日</span>
+            <h2>CSS中的自然美学</h2>
+            <p>如何用现代CSS实现有机的视觉效果... 流动的布局、自然渐变色和生态友好的配色方案。</p>
+            <div style="margin-top: 1rem;">
+                <span style="background: var(--accent-green);" class="post-tag">设计</span>
+                <span style="background: var(--secondary-green);" class="post-tag">CSS</span>
+            </div>
+        </article>
     </div>
 
-    <!-- Firebase 配置 -->
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
-    <script src="app.js"></script>
+    <footer>
+        <p>© 2024 绿意博客 - 遵循自然之道</p>
+        <p style="margin-top: 0.5rem;">contact@greenblog.com</p>
+    </footer>
 </body>
 </html>
